@@ -1,7 +1,7 @@
 {
-  "name": "finalgroupproject",
+  "name": "finalprojecthandlebars",
   "version": "1.0.0",
-  "description": "Final Team Group Project",
+  "description": "Final Team Group Project Handlebars",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,15 +11,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jldoucette/finalgroupproject.git"
+    "url": "git+https://github.com/jldoucette/finalprojecthandlebars.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jldoucette/finalgroupproject/issues"
+    "url": "https://github.com/jldoucette/finalprojecthandlebars/issues"
   },
-  "homepage": "https://github.com/jldoucette/finalgroupproject#readme",
+  "homepage": "https://github.com/jldoucette/finalprojecthandlebars#readme",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "express-handlebars": "^3.0.0",

@@ -1,0 +1,33 @@
+  
+  
+  <div id="loginpage">
+    <h2>New User Page</h2>
+
+  
+               <div id="row">
+               <div id="newuser">
+                    <h2>Create New User</h2>
+                    <form class="create-update-form" action="/newuser" method="POST">
+
+                      <div class="form-group">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" id="first_name" name="first_name">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" id="last_name" name="last_name">
+                         <label for="username">eMail (will be your username):</label>
+                        <input type="text" id="username" name="username">
+                         <label for="address">Address (street,city,state,zip):</label>
+                        <input type="text" id="address" name="address">
+                         <label for="phone">Phone:</label>
+                        <input type="text" id="phone" name="phone">
+                         <label for="password">Password:</label>
+                        <input type="password" id="password" name="password">
+                         <label for="user_role">Role (R or U):</label>
+                        <input type="text" id="user_role" name="user_role">
+                      </div>
+                      <button class="btn btn-default btn-large" type="submit">Create User</button>
+                    </form>
+                     <a href="/login">Login Page</a>
+            </div>
+            </div>
+        </div>

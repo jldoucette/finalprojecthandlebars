@@ -1,7 +1,10 @@
 var db = require("../models");
+var bcrypt = require("bcrypt");
+const saltRounds = 10;
+var siteUsername;
 
 module.exports = function(app) {
-var userLoggedIn;
+var userLoggedIn=false;
 var userIdentity;
 var userFirstName;
 var userLastName;
@@ -11,22 +14,43 @@ var userPhone;
 var userRestaurant;
 var userRole;
 var password;
+var today;
+var todaysdate;
 
+app.get("/logout", function(req, res) {
+    userLoggedIn=false;
+    res.redirect("/login");
+
+   });
 app.get("/login", function(req, res) {
-         res.render("login");
+                 res.render("login");
         });
 
   app.put("/login", function(req, res){
       console.log("^^^^^^^^^^^^^^^^Got to Login Put");
-     
+      today=new Date();
+      todaysdate=today.getFullYear()+"-"+(1+today.getMonth())+"-"+today.getDate();
+      console.log("++++++++++++++++++++++++++Todays Date is "+todaysdate);      
     db.guests.findOne({
      where: 
     {username: req.body.username
-    }
-    }).then(function(data){
-        console.log("Data found" +data);
-        if(data){
-            if(data.password==req.body.password){
+    }}).then(project =>{
+    // }).then(function(data){
+
+        if (project !=null){
+            //project is the body of the object that is returned if the user exists
+          bcrypt.compare(req.body.password, project.dataValues.password, function(err, matches) {
+              if (err) {
+                console.log('Error while checking password');
+              }
+              else if (matches) {
+                console.log('The password matches!');
+                  siteUsername=req.body.username;
+                  db.guests.findOne({
+                    where: {
+                    username: siteUsername
+                    }
+                    }).then(function(data) {
                 console.log("Password was matched");
                 console.log(data.id);
                 console.log(data.first_name);
@@ -45,24 +69,64 @@ app.get("/login", function(req, res) {
             userPhone=data.phone;
             userRestaurant=data.restaurantID;
             userRole=data.user_role;
-            if(userRole=="R"){
-            res.render("pendingorders");
+         
+            if (userRole=="R"){
+                console.log("User Role was R");
+            res.redirect("/pendingorders");
             }
-            else {
-                res.render("purchaseoptions");
+            if (userRole=="U") {
+                res.redirect("/purchaseoptions");
             } 
+            });
             }
-            else {
-            res.render("nologinerror");  
-            }
-        }
-        else {
-            res.render("nologinerror");
-        }
-    })
-  });  
 
-  app.get("/", function(req, res) {
+            else if (!matches) {
+            userLoggedIn=false;
+            console.log('The password does NOT match!');
+            res.render("nologinerror");
+          }
+        });
+    }
+        else {
+          userLoggedIn=false;
+          res.render("nologinerror");
+        }
+    });
+  }); 
+
+  app.get("/newuser", function(req, res) {
+    res.render("newuser");
+});
+
+app.get("/", function(req, res) {
+    res.render("login");
+});
+
+app.get("/home", function(req, res) {
+    res.render("index");
+});
+
+  app.post("/newuser", function(req, res) {
+    var AlteredPassword = req.body.password;
+    bcrypt.hash(AlteredPassword, saltRounds, function(err, hash) { //bcrypt encrypts the password
+      db.guests.create({
+        username: req.body.username,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        password: hash,
+        address: req.body.address,
+        phone: req.body.phone,
+        email: req.body.username,
+        user_role: req.body.user_role
+      }).then(function(dbTodo) {
+        console.log('redirecting');
+        res.redirect("/login");
+            
+      })
+    })
+  });
+
+  app.get("/plates", function(req, res) {
     if (userLoggedIn && userRole=="R") {
     db.plates.findAll({
        order: ['plate_name']
@@ -70,7 +134,7 @@ app.get("/login", function(req, res) {
         var hbsObject = {
       plates: data
     };
-     res.render("index", hbsObject);
+     res.render("plates", hbsObject);
     });
 }
     else {
@@ -80,7 +144,7 @@ app.get("/login", function(req, res) {
 });
 
   
-  app.post("/", function(req, res) {
+  app.post("/addplate", function(req, res) {
     if (userLoggedIn && userRole=="R") {
     console.log(req.body);
     var postdate=new Date();
@@ -116,8 +180,8 @@ else {
      order: [['createdAt', 'ASC']],
 where: {
     'restID':'1'
-},
-include: [db.Plates]
+}
+// ,include: [db.Plates]
 }).then(function(data) {
       var hbsObject = {
     pendingorders: data
@@ -133,10 +197,7 @@ else {
 
 app.get('/purchaseoptions', function(req, res) {
     if (userLoggedIn && userRole=="U") {
-    var today=new Date();
-    var todaysdate=today.getFullYear()+"-"+(1+today.getMonth())+"-"+today.getDate();
-    console.log("++++++++++++++++++++++++++Todays Date is "+todaysdate);
-    db.plates.findAll({
+        db.plates.findAll({
        order: [['restID', 'ASC']],
   where: {
       'quantity':{$gte: 1},
