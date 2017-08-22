@@ -1,0 +1,93 @@
+
+<div class="container">
+    <div class="row">
+          <div class="col-md-12">
+          <h1 class="platesheader">Plates Available</h1>
+          </div>
+    </div>
+
+      <div class="row">
+  
+      </div>
+      
+      <div class="row">
+        <div class="col-md-10">
+          <div id="platesavailtobuy">
+            <h2>Plates Available For Purchase!</h2>
+            <ul>
+              {{#each purchaseoptions}}
+
+                  <li class="row">
+                    {{this.plate_name}}&nbsp{{this.description}}&nbsp${{this.price}}<br>
+                    {{this.protein}}&nbsp{{this.side1}}&nbsp<strong>Quantity Available:</strong> {{this.quantity}}
+                    <div id="platepurchase">
+                    <form action="/purchaseoptions/{{this.id}}?_method=PUT" method="POST">
+                        <label for="quantityordered">How Many?</label>
+                        <input type="text" id="quantityordered" name="quantityordered">
+                      <input type="hidden" name="restID" value={{this.restID}}>
+                       <input type="hidden" name="priorquantity" value={{this.quantity}}>
+                      <input type="hidden" name="PlatePurchaseID" value={{this.id}}>
+                       
+                      <button type="submit">Purchase</button>
+                    </form>
+                    </div>
+
+                  
+                  </li>
+            
+              {{/each}}
+            </ul>
+        </div>
+      </div>
+      
+        {{!-- <div class="col-md-2">
+            <div id="addplate">
+                    <h2>Add a Plate</h2>
+                    <form class="create-update-form" action="/" method="POST">
+
+                      <div class="form-group">
+                        <label for="plate_name">Plate Name:</label>
+                        <input type="text" id="plate_name" name="plate_name">
+                        <label for="description">Description:</label>
+                        <input type="text" id="description" name="description">
+                         <label for="protein">Protein:</label>
+                        <input type="text" id="protein" name="protein">
+                         <label for="side1">Side One:</label>
+                        <input type="text" id="side1" name="side1">
+                         <label for="side2">Side Two:</label>
+                        <input type="text" id="side2" name="side2">
+                         <label for="side3">Side Three:</label>
+                        <input type="text" id="side3" name="side3">
+                         <label for="price">Price:</label>
+                        <input type="text" id="price" name="price">
+                         <label for="quantity">quantity:</label>
+                        <input type="text" id="price" name="quantity">
+                        <label for="preptime">Prep Time (in Min.):</label>
+                        <input type="text" id="preptime" name="preptime">
+                         <label for="delaytime">Delay Time (in Min.):</label>
+                        <input type="text" id="delaytime" name="delaytime">
+
+                        <input type="hidden" name="restID" value="1">
+                        <input type="hidden" name="createdby" value="1">
+                      </div>
+                      <button class="btn btn-default btn-large" type="submit">Add Plate</button>
+                    </form>
+            </div>
+        </div> --}}
+
+        {{!-- <div class="col-md-4">
+            <div id="eatenburger">
+              <h2>Burgers that are eaten!</h2>
+                  <ul>
+                    {{#each burgers}}
+                      {{#if this.devoured}}
+                        <li class="row">
+                          {{this.id}}&nbsp&nbsp&nbsp&nbsp{{this.burger_name}}
+                        </li>
+                      {{/if}}
+                    {{/each}}
+                  </ul>
+              </div>
+        </div> --}}
+
+</div>
