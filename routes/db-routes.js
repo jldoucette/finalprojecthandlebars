@@ -17,6 +17,13 @@ var password;
 var today;
 var todaysdate;
 
+app.get("/", function(req, res) {
+  res.render("login");
+});
+
+app.get("/home", function(req, res) {
+  res.render("index");
+});
 app.get("/logout", function(req, res) {
     userLoggedIn=false;
     res.redirect("/login");
@@ -98,13 +105,7 @@ app.get("/login", function(req, res) {
     res.render("newuser");
 });
 
-app.get("/", function(req, res) {
-    res.render("login");
-});
 
-app.get("/home", function(req, res) {
-    res.render("index");
-});
 
   app.post("/newuser", function(req, res) {
     var AlteredPassword = req.body.password;

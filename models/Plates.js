@@ -32,10 +32,6 @@ module.exports = function(sequelize, DataTypes) {
       type:  DataTypes.STRING,
       allowNull: false
     },
-    restID: {
-      type: DataTypes.STRING,
-      allowNull:false
-    },
     createdby: {
       type: DataTypes.STRING,
       allowNull:false
@@ -59,7 +55,7 @@ module.exports = function(sequelize, DataTypes) {
   });
     Plates.associate = function (models) {
     Plates.hasMany(models.purchases, {
-  
+      foreignKey:'PlateID'
     });
   };
  

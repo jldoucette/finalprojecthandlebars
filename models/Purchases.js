@@ -7,10 +7,6 @@ module.exports = function(sequelize, DataTypes) {
     purchaserID: {
       type:  DataTypes.STRING,
       allowNull: false
-    }, 
-    restID: {
-      type:  DataTypes.STRING,
-      allowNull: false
     }
   });
 
