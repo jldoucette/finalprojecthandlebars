@@ -24,23 +24,15 @@ module.exports = function(sequelize, DataTypes) {
 
   Restaurants.associate = function (models) {
     Restaurants.hasMany(models.plates, {
-        foreignKey:'RestID',
+        foreignKey:'RestaurantID',
           onDelete: "cascade"
       });
     };
 
-    Restaurants.associate = function (models) {
-      Restaurants.hasMany(models.guests, {
-          foreignKey:'RestID',
-            onDelete: "cascade"
-        });
-      };
+ 
 
-      Restaurants.associate = function (models) {
-        Restaurants.hasMany(models.purchases, {
-            foreignKey:'RestID',
-              onDelete: "cascade"
-          });
-        };
+  
+
+      
   return Restaurants;
 };

@@ -53,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
   };
   
   Guest.associate = function (models) {
-    Guest.hasMany(models.plates, {
+    Guest.hasMany(models.purchases, {
         foreignKey:'GuestID',
           onDelete: "cascade"
       });

@@ -29,6 +29,7 @@ app.get("/logout", function(req, res) {
     res.redirect("/login");
 
    });
+
 app.get("/login", function(req, res) {
                  res.render("login");
         });
@@ -164,7 +165,8 @@ app.get("/login", function(req, res) {
       createdate:createDate,
       preptime:req.body.preptime,
       delaytime:req.body.delaytime,
-      restID:req.body.restID
+      RestaurantID:userRestaurant
+      // GuestID:userIdentity
     }).then(function(data) {
       res.redirect("/");
     });
@@ -199,7 +201,7 @@ else {
 app.get('/purchaseoptions', function(req, res) {
     if (userLoggedIn && userRole=="U") {
         db.plates.findAll({
-       order: [['restID', 'ASC']],
+      //  order: [['restID', 'ASC']],
   where: {
       'quantity':{$gte: 1},
       createdate:todaysdate
