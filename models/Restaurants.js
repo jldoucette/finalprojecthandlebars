@@ -1,5 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
   var Restaurants = sequelize.define("restaurants", {
+    restname: {
+      type:  DataTypes.STRING,
+      allowNull: false
+    },
     address: {
       type:  DataTypes.STRING,
       allowNull: false
@@ -21,18 +25,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   });
-
-  Restaurants.associate = function (models) {
-    Restaurants.hasMany(models.plates, {
-        foreignKey:'RestaurantID',
-          onDelete: "cascade"
-      });
-    };
-
- 
-
-  
-
       
   return Restaurants;
 };

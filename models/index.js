@@ -30,6 +30,23 @@ Object.keys(db).forEach(function(modelName) {
   }
 });
 
+//Relations
+// db.guests.belongsToMany(db.purchases {through 'Guest_Purchases', foreignKey: 'GuestU_ID'});
+// db.purchases.belongsToMany(db.guests, {through 'Guest_Purchases', foreignKey: 'PurchGuestID'});
+
+db.guests.hasMany(db.purchases);
+db.purchases.belongsTo(db.guests);
+// db.purchases.belongsToMany(db.plates, {through: "plates_purchases"});
+// db.plates.belongsToMany(db.purchases, {through: "plates_purchases"});
+db.restaurants.hasMany(db.plates,{constraints: false}, {as: "RestID"});
+// db.plates.belongsTo(db.restaurants);
+db.purchases.hasMany(db.plates);
+db.restaurants.hasMany(db.purchases,{constraints: false});
+db.purchases.belongsTo(db.restaurants,{constraints: false});
+// db.restaurants.belongsToMany(db.purchases, {through: "restaurant_purchases"});
+// db.purchases.belongsToMany(db.restaurants, {through: "restaurant_purchases"});
+
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

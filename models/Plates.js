@@ -53,11 +53,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   });
-    Plates.associate = function (models) {
-    Plates.hasMany(models.purchases, {
-      foreignKey:'PlateID'
-    });
-  };
+
  
   return Plates;
 };

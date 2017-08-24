@@ -37,6 +37,10 @@ module.exports = function(sequelize, DataTypes) {
           len:[1]
         }
       },
+         restID: {type: DataTypes.STRING,
+        allowNull: true,
+      },
+
         password: {type: DataTypes.STRING,
         allowNull: false,
       },
@@ -45,19 +49,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
       }
     });
- Guest.associate = function (models) {
-  Guest.hasMany(models.purchases, {
-      foreignKey:'GuestID',
-        onDelete: "cascade"
-    });
-  };
-  
-  Guest.associate = function (models) {
-    Guest.hasMany(models.purchases, {
-        foreignKey:'GuestID',
-          onDelete: "cascade"
-      });
-    };
 
+  
     return Guest;
   };

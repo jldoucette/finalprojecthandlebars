@@ -75,7 +75,7 @@ app.get("/login", function(req, res) {
             userAddress=data.address;
             usereMail=data.email;
             userPhone=data.phone;
-            userRestaurant=data.restaurantID;
+            userRestaurant=data.restID;
             userRole=data.user_role;
          
             if (userRole=="R"){
@@ -131,7 +131,8 @@ app.get("/login", function(req, res) {
   app.get("/plates", function(req, res) {
     if (userLoggedIn && userRole=="R") {
     db.plates.findAll({
-       order: ['plate_name']
+       order: ['plate_name'],
+       where: {quantity: {$gt: 0}}
     }).then(function(data) {
         var hbsObject = {
       plates: data
@@ -165,7 +166,7 @@ app.get("/login", function(req, res) {
       createdate:createDate,
       preptime:req.body.preptime,
       delaytime:req.body.delaytime,
-      RestaurantID:userRestaurant
+      restaurantId:userRestaurant
       // GuestID:userIdentity
     }).then(function(data) {
       res.redirect("/");
@@ -182,9 +183,9 @@ else {
   db.purchases.findAll({
      order: [['createdAt', 'ASC']],
 where: {
-    'restID':'1'
+    'restaurantId':'1'
 }
-// ,include: [db.Plates]
+,include: [db.plates]
 }).then(function(data) {
       var hbsObject = {
     pendingorders: data
@@ -228,10 +229,11 @@ app.put("/purchaseoptions/:id", function(req, res) {
     console.log("New Quantity "+ newQuantity);
     if (newQuantity>0) {
     db.purchases.create({
-      purchaserID: '1',
+     guestId: userIdentity,
 
       quantity:newQuantity,
-      restID:req.body.restID
+      restaurantId:req.body.restID,
+      RestID:req.body.restID
     }),db.plates.update({
         quantity:newQuantity
     },{
