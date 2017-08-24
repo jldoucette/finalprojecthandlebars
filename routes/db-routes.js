@@ -119,7 +119,9 @@ app.get("/login", function(req, res) {
         address: req.body.address,
         phone: req.body.phone,
         email: req.body.username,
-        user_role: req.body.user_role
+        user_role: req.body.user_role,
+        restID:req.body.rest_id
+
       }).then(function(dbTodo) {
         console.log('redirecting');
         res.redirect("/login");
@@ -169,7 +171,7 @@ app.get("/login", function(req, res) {
       restaurantId:userRestaurant
       // GuestID:userIdentity
     }).then(function(data) {
-      res.redirect("/");
+      res.redirect("/addplate");
     });
 }
 else {
@@ -183,7 +185,8 @@ else {
   db.purchases.findAll({
      order: [['createdAt', 'ASC']],
 where: {
-    'restaurantId':'1'
+    'restaurantId':userRestaurant,
+    paid:true
 },
 include: [db.guests, db.plates]
 }).then(function(data) {
@@ -234,8 +237,8 @@ app.put("/purchaseoptions/:id", function(req, res) {
       guestId: userIdentity,
       quantity:req.body.quantityordered,
       restaurantId:req.body.restID,
-      RestID:req.body.restID,
-      plateId:req.params.id
+      plateId:req.params.id,
+      paid:false
     }),db.plates.update({
         quantity:newQuantity
     },{
