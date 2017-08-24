@@ -14,11 +14,26 @@
         <div class="col-md-10">
           <div id="pendingorders">
             <h2>Orders Pending For Your Restaurant</h2>
-            <ul>
+            <ul style="list-style: none;">
               {{#each pendingorders}}
 
-                  <li class="row">
-                    {{this.id}}&nbsp&nbsp&nbsp&nbsp{{this.plate_name}}&nbsp{{this.protein}}
+                    <li class="row">
+                    <br>
+                    <h5><strong>ORDER INFORMATION</strong></h5>
+                    <strong>Plate Name: </strong>{{this.plate.plate_name}}<br>
+                    <strong>Plate Protein: </strong>{{this.plate.protein}}<br>
+                    {{#if this.plate.side1}}
+                    <strong>Plate Side 1: </strong>{{this.plate.side1}}<br>
+                     {{/if}}
+                    {{#if this.plate.side2}}
+                    <strong>Plate Side 2: </strong>{{this.plate.side2}}<br>
+                    {{/if}}
+                     {{#if this.plate.side3}}
+                    <strong>Plate Side 3: </strong>{{this.plate.side3}}<br>
+                    {{/if}}
+                    <strong>Quantity: </strong>{{this.quantity}}<br>
+                    
+                  
                     {{!-- <div id="uneatenform">
                     <form action="/{{this.id}}?_method=PUT" method="POST">
                       <input type="hidden" name="devoured" value="true">

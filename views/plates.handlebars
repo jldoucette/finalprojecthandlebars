@@ -22,7 +22,9 @@
                     <h5><strong>PLATE INFORMATION</strong></h5>
                     <strong>Plate Name: </strong>{{this.plate_name}}<br>
                     <strong>Plate Protein: </strong>{{this.protein}}<br>
-                    <strong>Plate Side 1: </strong>{{this.side1}}<br>
+                     {{#if this.side1}}
+                     <strong>Plate Side 1: </strong>{{this.side1}}<br>
+                      {{/if}}
                     {{#if this.side2}}
                     <strong>Plate Side 2: </strong>{{this.side2}}<br>
                     {{/if}}

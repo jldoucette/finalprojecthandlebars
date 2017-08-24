@@ -184,9 +184,11 @@ else {
      order: [['createdAt', 'ASC']],
 where: {
     'restaurantId':'1'
-}
-,include: [db.plates]
+},
+include: [db.plates]
 }).then(function(data) {
+  console.log("^^^^^^^^^^^^^^**********Plate DB Retrieve"+JSON.stringify(data));
+  // console.log("*****Testing Ref to Plates"+data[0].plates.protein);
       var hbsObject = {
     pendingorders: data
   };
