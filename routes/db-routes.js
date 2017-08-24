@@ -185,7 +185,7 @@ else {
 where: {
     'restaurantId':'1'
 },
-include: [db.plates]
+include: [db.guests, db.plates]
 }).then(function(data) {
   console.log("^^^^^^^^^^^^^^**********Plate DB Retrieve"+JSON.stringify(data));
   // console.log("*****Testing Ref to Plates"+data[0].plates.protein);
@@ -229,13 +229,13 @@ app.put("/purchaseoptions/:id", function(req, res) {
     console.log("Body Quantity "+req.body.quantityordered);
     var newQuantity=parseInt(req.body.priorquantity)-parseInt(req.body.quantityordered);
     console.log("New Quantity "+ newQuantity);
-    if (newQuantity>0) {
+    if (newQuantity>=0) {
     db.purchases.create({
-     guestId: userIdentity,
-
-      quantity:newQuantity,
+      guestId: userIdentity,
+      quantity:req.body.quantityordered,
       restaurantId:req.body.restID,
-      RestID:req.body.restID
+      RestID:req.body.restID,
+      plateId:req.params.id
     }),db.plates.update({
         quantity:newQuantity
     },{
