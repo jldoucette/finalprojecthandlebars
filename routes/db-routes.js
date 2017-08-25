@@ -173,7 +173,7 @@ module.exports = function (app) {
         restaurantId: userRestaurant
         // GuestID:userIdentity
       }).then(function (data) {
-        res.redirect("/addplate");
+        res.redirect("/plates");
       });
     }
     else {
@@ -314,26 +314,26 @@ module.exports = function (app) {
     }
   });
 
-  //   app.put("/completeplate/:id", function(req, res) {
-  //     if (userLoggedIn && userRole=="R") {
-  //     console.log(req.body);
+    app.put("/completeplate/:id", function(req, res) {
+      if (userLoggedIn && userRole=="R") {
+      console.log(req.body);
 
-  //    db.purchases.update({
-  //         completed:true
-  //     },{
-  //       where: {
-  //         id:req.params.id
-  //       }
-  //     }).then(function(data) {
-  //       res.redirect("/pendingorders");
-  //     });
+     db.purchases.update({
+          completed:true
+      },{
+        where: {
+          id:req.params.id
+        }
+      }).then(function(data) {
+        res.redirect("/pendingorders");
+      });
 
-  // }
-  // else {
-  //     console.log("failed if, no username");
-  //     res.render("nologinerror");
-  //      } 
-  //   }); 
+  }
+  else {
+      console.log("failed if, no username");
+      res.render("nologinerror");
+       } 
+    }); 
 
 
   app.get('/notenoughtosell', function (req, res) {
