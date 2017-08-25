@@ -1,5 +1,5 @@
 var db = require("../models");
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcryptjs");
 const saltRounds = 10;
 var siteUsername;
 
