@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/jldoucette/finalprojecthandlebars#readme",
   "dependencies": {
-    "bcrypt": "^1.0.2",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "express-handlebars": "^3.0.0",
