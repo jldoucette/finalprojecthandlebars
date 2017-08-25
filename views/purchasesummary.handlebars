@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
           <div class="col-md-12">
-          <h1 class="platesheader">Plates Available</h1>
+          <h1 class="purchaseheader">Purchase Summary</h1>
           </div>
     </div>
 
@@ -11,42 +11,36 @@
       </div>
       
       <div class="row">
-        <div class="col-md-6">
-          <div id="platesavailtobuy">
-            <h2>Plates Available For Purchase!</h2>
+        <div class="col-md-10">
+          <div id="purchasesummary">
+            <h2>Plates Purchased!</h2>
             <ul style="list-style: none;">
-              {{#each purchaseoptions}}
+                <h5><strong>ORDER SUMMARY</strong></h5>
+           {{#each purchasesummary}}
 
-                  <li class="row">
-                    {{this.plate_name}}&nbsp{{this.description}}&nbsp${{this.price}}<br>
-                    {{this.protein}}&nbsp{{this.side1}}&nbsp<strong>Quantity Available:</strong> {{this.quantity}}
-                    <div id="platepurchase">
-                    <form action="/purchaseoptions/{{this.id}}?_method=PUT" method="POST">
-                        <label for="quantityordered">How Many?</label>
-                        <input type="text" id="quantityordered" name="quantityordered">
-                      <input type="hidden" name="restID" value={{this.restaurantId}}>
-                       <input type="hidden" name="priorquantity" value={{this.quantity}}>
+              <li class="row">
+                    <br>
+                  
+              
+                    <strong>Restaurant Name: </strong>{{this.restaurant.first_name}} {{this.guest.last_name}}
+                    <strong>Plate Name: </strong>{{this.plate.plate_name}}
+                    <strong>Quantity: </strong>{{this.quantityordered}}
+          
+                    <strong>Price per Plate: </strong>{{this.plate.price}}
+                     {{!-- <form action="/purchaseplates/{{this.id}}?_method=PUT" method="POST">
                       <input type="hidden" name="PlatePurchaseID" value={{this.id}}>
-                       
-                      <button type="submit">Purchase</button>
-                    </form>
-                    </div>
-
+                      <button type="submit">Pay For Order</button>
+                    </form> --}}
                   
                   </li>
             
               {{/each}}
             </ul>
         </div>
-               <div class="row">
-      <div class='col-md-2'></div>
-      <div class='col-md-10'>
-    <a class="btn btn-default" href="/purchasesummary">Purchase Summary And Pay</a>
       </div>
-      </div>
-      </div>
-    
 
+    
+</div>
 
         {{!-- <div class="col-md-6">
           <div id="purchasetopay">
@@ -73,5 +67,5 @@
               {{/each}}
             </ul>
         </div>
-    </div> --}}
     </div>
+    </div> --}}

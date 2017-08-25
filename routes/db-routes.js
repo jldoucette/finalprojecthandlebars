@@ -249,20 +249,11 @@ module.exports = function (app) {
             where: {
               id: req.params.id
             }
-          }), db.purchases.findAll({
-            order: [['restaurantId', 'ASC']],
-            where: {
-              guestId: userIdentity,
-              paid: false,
-              'quantity': { $gte: 1 }
-            },
-            include: [db.plates, db.restaurants]
-
           }).then(function (data) {
-            var hbsObject = {
-              purchasesummary: data
-            };
-            res.render("purchaseoptions", hbsObject);
+            // var hbsObject = {
+            //   purchasesummary: data
+            // };
+            res.render("purchaseoptions");
           });
       }
       else {
@@ -276,29 +267,31 @@ module.exports = function (app) {
     }
   });
 
-  //   app.get('/purchasesummary', function(req, res) {
-  //     if (userLoggedIn && userRole=="U") {
-  //         db.purchases.findAll({
-  //        order: [['restaurantId', 'ASC']],
-  //   where: {
-  //       guestId:userIdentity,
-  //       paid:false,
-  //       'quantity':{$gte: 1}
-  //      },
-  //      include: [db.plates,db.restaurants]
+    app.get('/purchasesummary', function(req, res) {
+      if (userLoggedIn && userRole=="U") {
+        console.log("%%%%%%%GOT HERE to purchases summary");
+          db.purchases.findAll({
+         order: [['restaurantId', 'ASC']],
+    where: {
+        guestId:userIdentity,
+        paid:false,
+        'quantity':{$gte: 1}
+       },
+       include: [db.plates,db.restaurants]
 
-  //   }).then(function(data) {
-  //         var hbsObject = {
-  //       purchasesummary: data
-  //     };
-  //      res.render("purchaseoptions", hbsObject);
-  //     });
-  // }
-  // else {
-  //     console.log("failed if, no username");
-  //     res.render("nologinerror");
-  //      } 
-  //   });
+    }).then(function(data) {
+          console.log("%%%%%%%%%%%%%%Data Result"+JSON.stringify(data));
+          var hbsObject = {
+        purchasesummary: data
+      };
+       res.render("purchasesummary", hbsObject);
+      });
+  }
+  else {
+      console.log("failed if, no username");
+      res.render("nologinerror");
+       } 
+    });
 
   app.put("/purchaseplates/:id", function (req, res) {
     if (userLoggedIn && userRole == "U") {
