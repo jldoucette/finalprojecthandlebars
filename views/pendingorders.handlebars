@@ -33,71 +33,16 @@
                     <strong>Plate Side 3: </strong>{{this.plate.side3}}<br>
                     {{/if}}
                     <strong>Quantity: </strong>{{this.quantity}}<br>
-                    
-                  
-                    {{!-- <div id="uneatenform">
-                    <form action="/{{this.id}}?_method=PUT" method="POST">
-                      <input type="hidden" name="devoured" value="true">
-                      <button type="submit">Devour It!</button>
+                  <div id="completeform">
+                    <form action="/completeplate/{{this.id}}?_method=PUT" method="POST">
+                      <input type="hidden" name="completed" value="true">
+                      <button type="submit">Order completeform</button>
                     </form>
-                    </div> --}}
-
-                  
+                    </div>
                   </li>
             
               {{/each}}
             </ul>
         </div>
       </div>
-{{!--       
-        <div class="col-md-2">
-            <div id="addplate">
-                    <h2>Add a Plate</h2>
-                    <form class="create-update-form" action="/" method="POST">
-
-                      <div class="form-group">
-                        <label for="plate_name">Plate Name:</label>
-                        <input type="text" id="plate_name" name="plate_name">
-                        <label for="description">Description:</label>
-                        <input type="text" id="description" name="description">
-                         <label for="protein">Protein:</label>
-                        <input type="text" id="protein" name="protein">
-                         <label for="side1">Side One:</label>
-                        <input type="text" id="side1" name="side1">
-                         <label for="side2">Side Two:</label>
-                        <input type="text" id="side2" name="side2">
-                         <label for="side3">Side Three:</label>
-                        <input type="text" id="side3" name="side3">
-                         <label for="price">Price:</label>
-                        <input type="text" id="price" name="price">
-                         <label for="quantity">quantity:</label>
-                        <input type="text" id="price" name="quantity">
-                        <label for="preptime">Prep Time (in Min.):</label>
-                        <input type="text" id="preptime" name="preptime">
-                         <label for="delaytime">Delay Time (in Min.):</label>
-                        <input type="text" id="delaytime" name="delaytime">
-
-                        <input type="hidden" name="restID" value="1">
-                        <input type="hidden" name="createdby" value="1">
-                      </div>
-                      <button class="btn btn-default btn-large" type="submit">Add Plate</button>
-                    </form>
-            </div>
-        </div> --}}
-
-        {{!-- <div class="col-md-4">
-            <div id="eatenburger">
-              <h2>Burgers that are eaten!</h2>
-                  <ul>
-                    {{#each burgers}}
-                      {{#if this.devoured}}
-                        <li class="row">
-                          {{this.id}}&nbsp&nbsp&nbsp&nbsp{{this.burger_name}}
-                        </li>
-                      {{/if}}
-                    {{/each}}
-                  </ul>
-              </div>
-        </div> --}}
-
 </div>
