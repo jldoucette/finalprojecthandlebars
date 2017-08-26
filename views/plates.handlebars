@@ -1,147 +1,119 @@
-
 <div class="container">
-    <div class="row">
-          <div class="col-md-12">
-          <h1 class="platesheader">Plates</h1>
-          </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="platesheader">Plates</h1>
+    </div>
+  </div>
+
+  <div class="row">
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div id="platesavail">
+        <h2>Plates Listed for your Restaurant</h2>
+        <ul style="list-style: none;">
+          {{#each plates}}
+          <li class="row">
+            <br>
+            <h5><strong>PLATE INFORMATION</strong></h5>
+            <strong>Plate Name: </strong>{{this.plate_name}}<br>
+            <strong>Plate Protein: </strong>{{this.protein}}<br> {{#if this.side1}}
+            <strong>Plate Side 1: </strong>{{this.side1}}<br> {{/if}} {{#if this.side2}}
+            <strong>Plate Side 2: </strong>{{this.side2}}<br> {{/if}} {{#if this.side3}}
+            <strong>Plate Side 3: </strong>{{this.side3}}<br> {{/if}}
+            <strong>Portions Left: </strong>{{this.quantity}}<br> {{!--
+            <div id="uneatenform">
+              <form action="/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="true">
+                <button type="submit">Devour It!</button>
+              </form>
+            </div> --}}
+          </li>
+          {{/each}}
+        </ul>
+      </div>
     </div>
 
-      <div class="row">
-  
-      </div>
-      
-      <div class="row">
-        <div class="col-md-6">
-          <div id="platesavail">
-            <h2>Plates Listed for your Restaurant</h2>
-            <ul style="list-style: none;">
-              {{#each plates}}
+    <div class="col-md-6">
+      <div id="addplate">
+        <h2>Add a New Plate</h2>
 
-                  <li class="row">
-                    <br>
-                    <h5><strong>PLATE INFORMATION</strong></h5>
-                    <strong>Plate Name: </strong>{{this.plate_name}}<br>
-                    <strong>Plate Protein: </strong>{{this.protein}}<br>
-                     {{#if this.side1}}
-                     <strong>Plate Side 1: </strong>{{this.side1}}<br>
-                      {{/if}}
-                    {{#if this.side2}}
-                    <strong>Plate Side 2: </strong>{{this.side2}}<br>
-                    {{/if}}
-                     {{#if this.side3}}
-                    <strong>Plate Side 3: </strong>{{this.side3}}<br>
-                    {{/if}}
-                    <strong>Portions Left: </strong>{{this.quantity}}<br>
-                    
-                    
-                    {{!-- <div id="uneatenform">
-                    <form action="/{{this.id}}?_method=PUT" method="POST">
-                      <input type="hidden" name="devoured" value="true">
-                      <button type="submit">Devour It!</button>
-                    </form>
-                    </div> --}}
-
-                  
-                  </li>
-            
-              {{/each}}
-            </ul>
-        </div>
-      </div>
-      
-        <div class="col-md-6">
-            <div id="addplate">
-                    <h2>Add a New Plate</h2>
-                  
-                    <form class="create-update-form" action="/addplate" method="POST">
-                    <form class="form-horizonal">
-                      <div class="form-group">
-                         <div class="form-group form-group-md">
-                           <label class="col-md-4 control-label" for="plate_name">Plate Name:</label>
-                        <div class="col-md-8">
-                          <input type="text" id="plate_name" name="plate_name">
-                        </div>
-                        </div>
-                        <div class="form-group form-group-md">
-                        <label class="col-md-4 control-label" for="description">Description:</label>
-                        <div class="col-md-8">
-                          <input type="text" id="description" name="description">
-                        </div>
-                        </div>
-                         <div class="form-group form-group-md">
-                           <label class="col-md-4 control-label" for="protein">Protein:</label>
-                        <div class="col-md-8">
-                          <input type="text" id="protein" name="protein">
-                        </div>
-                        </div>
-                        <div class="form-group form-group-md">
-                          <label class="col-md-4 control-label" for="side1">Side One:</label>
-                        <div class="col-md-8">
-                        <input type="text" id="side1" name="side1">
-                        </div>
-                        </div>
-                         <div class="form-group form-group-md">
-                           <label class="col-md-4 control-label" for="side2">Side Two:</label>
-                        <div class="col-md-8">
-                          <input type="text" id="side2" name="side2">
-                          </div>
-                        </div>
-                        <div class="form-group form-group-md">
-                            <label class="col-md-4 control-label" for="side3">Side Three:</label>
-                        <div class="col-md-8">
-                          <input type="text" id="side3" name="side3">
-                          </div>
-                        </div>
-                        <div class="form-group form-group-md">
-                         
-                            <label class="col-md-4 control-label" for="price">Price:</label>
-                        <div class="col-md-8">
-                          <input type="text" id="price" name="price">
-                          </div>
-                        </div>
-                        <div class="form-group form-group-md"> 
-                            <label class="col-md-4 control-label" for="quantity">quantity:</label>
-                        <div class="col-md-8">
-                          <input type="text" id="price" name="quantity">
-                         </div>
-                        </div>
-                         <div class="form-group form-group-md">
-                          <label class="col-md-4 control-label" for="preptime">Prep Time (Min):</label>
-                        <div class="col-md-8">
-                          <input type="text" id="preptime" name="preptime">
-                          </div>
-                        </div>
-                          <div class="form-group form-group-md">
-                         <label class="col-md-4 control-label" for="delaytime">Delay Time (Min):</label>
-                        <div class="col-md-8">
-                          <input type="text" id="delaytime" name="delaytime">
-                        </div>
-                        </div>
-                        <input type="hidden" name="restID" value="1">
-                        <input type="hidden" name="createdby" value="1">
-                      </div>
-                      <div class="col-md-4"></div>
-                      <div class="col-md-8">
-                      <button class="btn btn-default btn-large" type="submit">Add Plate</button>
-                      </div>
-                    </form>
-                    </form>
-            </div>
-        </div>
-
-        {{!-- <div class="col-md-4">
-            <div id="eatenburger">
-              <h2>Burgers that are eaten!</h2>
-                  <ul>
-                    {{#each burgers}}
-                      {{#if this.devoured}}
-                        <li class="row">
-                          {{this.id}}&nbsp&nbsp&nbsp&nbsp{{this.burger_name}}
-                        </li>
-                      {{/if}}
-                    {{/each}}
-                  </ul>
+        <form class="create-update-form" action="/addplate" method="POST">
+          <form class="form-horizonal">
+            <div class="form-group">
+              <div class="form-group form-group-md">
+                <label class="col-md-4 control-label" for="plate_name">Plate Name:</label>
+                <div class="col-md-8">
+                  <input type="text" id="plate_name" name="plate_name">
+                </div>
               </div>
-        </div> --}}
+              <div class="form-group form-group-md">
+                <label class="col-md-4 control-label" for="description">Description:</label>
+                <div class="col-md-8">
+                  <input type="text" id="description" name="description">
+                </div>
+              </div>
+              <div class="form-group form-group-md">
+                <label class="col-md-4 control-label" for="protein">Protein:</label>
+                <div class="col-md-8">
+                  <input type="text" id="protein" name="protein">
+                </div>
+              </div>
+              <div class="form-group form-group-md">
+                <label class="col-md-4 control-label" for="side1">Side One:</label>
+                <div class="col-md-8">
+                  <input type="text" id="side1" name="side1">
+                </div>
+              </div>
+              <div class="form-group form-group-md">
+                <label class="col-md-4 control-label" for="side2">Side Two:</label>
+                <div class="col-md-8">
+                  <input type="text" id="side2" name="side2">
+                </div>
+              </div>
+              <div class="form-group form-group-md">
+                <label class="col-md-4 control-label" for="side3">Side Three:</label>
+                <div class="col-md-8">
+                  <input type="text" id="side3" name="side3">
+                </div>
+              </div>
+              <div class="form-group form-group-md">
 
-</div>
+                <label class="col-md-4 control-label" for="price">Price:</label>
+                <div class="col-md-8">
+                  <input type="text" id="price" name="price">
+                </div>
+              </div>
+              <div class="form-group form-group-md">
+                <label class="col-md-4 control-label" for="quantity">quantity:</label>
+                <div class="col-md-8">
+                  <input type="text" id="price" name="quantity">
+                </div>
+              </div>
+              <div class="form-group form-group-md">
+                <label class="col-md-4 control-label" for="preptime">Prep Time (Min):</label>
+                <div class="col-md-8">
+                  <input type="text" id="preptime" name="preptime">
+                </div>
+              </div>
+              <div class="form-group form-group-md">
+                <label class="col-md-4 control-label" for="delaytime">Delay Time (Min):</label>
+                <div class="col-md-8">
+                  <input type="text" id="delaytime" name="delaytime">
+                </div>
+              </div>
+              <input type="hidden" name="restID" value="1">
+              <input type="hidden" name="createdby" value="1">
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+              <button class="btn btn-default btn-large" type="submit">Add Plate</button>
+            </div>
+          </form>
+        </form>
+      </div>
+    </div>
+
+  </div>
