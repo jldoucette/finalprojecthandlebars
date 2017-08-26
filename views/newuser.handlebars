@@ -1,73 +1,69 @@
-  
-  
-  <div id="loginpage">
-    <h2>New User Page</h2>
+<div id="loginpage">
+  <h2>New User Page</h2>
 
-  
-               <div id="row">
-               <div id="newuser">
-                    <h2>Create New User</h2>
-                    
-                    <form class="create-update-form" action="/newuser" method="POST">
-                      <form class="form-horizontal">
-                      <div class="form-group form-group-lg">
-                        <label class="col-md-3 control-label" for="first_name">First Name:</label>
-                          <div class="col-md-4">
-                            <input type="text" id="first_name" name="first_name">
-                          </div>
-                        </div>
-                        <div class="form-group form-group-lg">
-                          <label class="col-md-3 control-label" for="last_name">Last Name:</label>
-                            <div class="col-md-4">
-                              <input type="text" id="last_name" name="last_name">
-                            </div>
-                        </div>
-                        <div class="form-group form-group-lg">
-                          <label class="col-md-3 control-label" for="username">eMail (will be your username):</label>
-                          <div class="col-md-4">
-                            <input type="text" id="username" name="username">
-                          </div>
-                        </div>
-                          <div class="form-group form-group-lg">
-                            <label class="col-md-3 control-label" for="address">Address (street,city,state,zip):</label>
-                              <div class="col-md-4">
-                                <input type="text" id="address" name="address">
-                              </div>
-                            </div>
-                         <div class="form-group form-group-lg">
-                          <label class="col-md-3 control-label" for="phone">Phone:</label>
-                              <div class="col-md-4">
-                                <input type="text" id="phone" name="phone">
-                             </div>  
-                            </div>
-                          <div class="form-group form-group-lg">
-                        <label class="col-md-3 control-label" for="password">Password:</label>
-                            <div class="col-md-4">
-                              <input type="password" id="password" name="password">
-                          </div>
-                            </div>
-                          <div class="form-group form-group-lg">
-                         <label class="col-md-3 control-label" for="user_role">Role (R or U):</label>
-                        <div class="col-md-4">
-                          <input type="text" id="user_role" name="user_role">
-                          </div>
-                          </div>
-                        <div class="form-group form-group-lg">
-                         <label class="col-md-3 control-label" for="rest_id">If R, Rest ID:</label>
-                        <div class="col-md-4">
-                          <input type="text" id="rest_id" name="rest_id">
-                          </div>
-                          </div>
-                   
-                        <div class='col-md-10'>
-                      <button class="btn btn-default btn-large" type="submit">Create User</button>
-                    <a class="btn btn-default" href="/login">Login Page</a>
-                    </div>
-               
-                    </form>
-                    </form>
-                 
 
-        
+  <div id="row">
+    <div id="newuser">
+      <h2>Create New User</h2>
+
+      <form class="create-update-form" action="/newuser" method="POST">
+        <form class="form-horizontal">
+          <div class="form-group form-group-lg">
+            <label class="col-md-3 control-label" for="first_name">First Name:</label>
+            <div class="col-md-4">
+              <input type="text" id="first_name" name="first_name">
             </div>
-        </div>
+          </div>
+          <div class="form-group form-group-lg">
+            <label class="col-md-3 control-label" for="last_name">Last Name:</label>
+            <div class="col-md-4">
+              <input type="text" id="last_name" name="last_name">
+            </div>
+          </div>
+          <div class="form-group form-group-lg">
+            <label class="col-md-3 control-label" for="username">eMail (will be your username):</label>
+            <div class="col-md-4">
+              <input type="text" id="username" name="username">
+            </div>
+          </div>
+          <div class="form-group form-group-lg">
+            <label class="col-md-3 control-label" for="address">Address (street,city,state,zip):</label>
+            <div class="col-md-4">
+              <input type="text" id="address" name="address">
+            </div>
+          </div>
+          <div class="form-group form-group-lg">
+            <label class="col-md-3 control-label" for="phone">Phone:</label>
+            <div class="col-md-4">
+              <input type="text" id="phone" name="phone">
+            </div>
+          </div>
+          <div class="form-group form-group-lg">
+            <label class="col-md-3 control-label" for="password">Password:</label>
+            <div class="col-md-4">
+              <input type="password" id="password" name="password">
+            </div>
+          </div>
+          <div class="form-group form-group-lg">
+            <label class="col-md-3 control-label" for="user_role">Role (R or U):</label>
+            <div class="col-md-4">
+              <input type="text" id="user_role" name="user_role">
+            </div>
+          </div>
+          <div class="form-group form-group-lg">
+            <label class="col-md-3 control-label" for="rest_id">If R, Rest ID:</label>
+            <div class="col-md-4">
+              <input type="text" id="rest_id" name="rest_id">
+            </div>
+          </div>
+
+          <div class='col-md-10'>
+            <button class="btn btn-default btn-large" type="submit">Create User</button>
+            <a class="btn btn-default" href="/login">Login Page</a>
+          </div>
+
+        </form>
+      </form>
+
+    </div>
+  </div>
