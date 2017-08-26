@@ -20,6 +20,10 @@ module.exports = function(sequelize, DataTypes) {
       type:  DataTypes.STRING,
       allowNull: true
     },
+    createdBy: {
+      type:  DataTypes.STRING,
+      allowNull: true
+    },
     piclink: {
       type:  DataTypes.STRING,
       allowNull: true

@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="restaurantheader">Restaurants</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="restaurantlist">
+                <h2>Current Restaurants</h2>
+                <ul style="list-style: none;">
+                    <h5><strong>RESTAURANT INFORMATION</strong></h5>
+                    {{#each restaurants}}
+
+                    <li class="row">
+                        <br>
+
+                        <strong>Resaurant ID: {{this.id}}</strong><br>
+                        <strong>Resaurant Name: </strong>{{this.restname}}<br>
+                        <strong>Address: </strong>{{this.address}}<br>
+                        <strong>Hours: </strong>{{this.hours}}<br>
+                        <strong>Phone: </strong>{{this.phone}}<br>
+                        <strong>email: </strong>{{this.email}}<br>
+                        <strong>Created By: </strong>{{this.createdBy}}<br>
+                    </li>
+                    <hr>{{/each}}
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="addrestaurant">
+                    <h2>Add a New Restaurant</h2>
+                    <form class="create-update-form" action="/addrestaurant" method="POST">
+                        <form class="form-horizonal">
+                            <div class="form-group">
+                                <div class="form-group form-group-md">
+                                    <label class="col-md-4 control-label" for="restname">Restaurant Name:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="restname" name="restname">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-md">
+                                    <label class="col-md-4 control-label" for="address">Address:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="address" name="address">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-md">
+                                    <label class="col-md-4 control-label" for="hours">Hours:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="hours" name="hours">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-md">
+                                    <label class="col-md-4 control-label" for="phone">Phone:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="phone" name="phone">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-md">
+                                    <label class="col-md-4 control-label" for="email">email:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="email" name="email">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="restID" value="1">
+                                <input type="hidden" name="createdby" value="1">
+                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8">
+                                <button class="btn btn-default btn-large" type="submit">Add Restaurant</button>
+                            </div>
+                        </form>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
