@@ -1,5 +1,6 @@
 var db = require("../models");
 var bcrypt = require("bcryptjs");
+
 const saltRounds = 10;
 // var siteUsername;
 
@@ -17,6 +18,7 @@ module.exports = function (app) {
   var today;
   var todaysdate;
   var siteUsername;
+  var returnedquantity;
 
   app.get("/", function (req, res) {
     res.render("login");
@@ -219,7 +221,8 @@ module.exports = function (app) {
         where: {
           'quantity': { $gte: 1 },
           createdate: todaysdate
-        }
+        },
+        include: [db.restaurants]
 
       }).then(function (data) {
         var hbsObject = {
@@ -246,6 +249,7 @@ module.exports = function (app) {
           quantity: req.body.quantityordered,
           restaurantId: req.body.restID,
           plateId: req.params.id,
+          createdate: todaysdate,
           paid: false,
           completed: false
         }), db.plates.update({
@@ -279,7 +283,8 @@ module.exports = function (app) {
         order: [['restaurantId', 'ASC']],
         where: {
           guestId: userIdentity,
-          paid: false,
+          createdate:todaysdate,
+          // paid: false,
           'quantity': { $gte: 1 }
         },
         include: [db.plates, db.restaurants]
@@ -310,6 +315,35 @@ module.exports = function (app) {
           }
         }).then(function (data) {
           res.redirect("/purchaseoptions");
+        });
+
+    }
+    else {
+      console.log("failed if, no username");
+      res.render("nologinerror");
+    }
+  });
+
+  app.delete("/cancelplate/:id", function (req, res) {
+    if (userLoggedIn && userRole == "U") {
+      var reservedquantity=req.body.reservedquantity;
+      var precxlremainqty=req.body.precxlremainqty;
+      var returnedquantity=parseInt(reservedquantity)+parseInt(precxlremainqty);
+      console.log("##### Pre Return Quantity: "+precxlremainqty+" Reserved Qty: "+ reservedquantity+ " New Quantity: "+ returnedquantity);
+
+      db.purchases.destroy( 
+         { where: {
+            id: req.params.id
+          }
+        })
+        ,db.plates.update({
+          quantity: returnedquantity
+        }, {
+            where: {
+              id: req.body.sourceplateID
+            }
+          }).then(function (data) {
+          res.redirect("/purchasesummary");
         });
 
     }

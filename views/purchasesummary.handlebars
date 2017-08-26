@@ -1,71 +1,89 @@
-
 <div class="container">
-    <div class="row">
-          <div class="col-md-12">
-          <h1 class="purchaseheader">Purchase Summary</h1>
-          </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="purchaseheader">Purchase Summary</h1>
+    </div>
+  </div>
+
+  <div class="row">
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-10">
+      <div id="purchasesummary">
+        <h2>Plates Purchased!</h2>
+        <ul style="list-style: none;">
+          <h5><strong>ORDER SUMMARY</strong></h5>
+          {{#each purchasesummary}}
+
+          <li class="row">
+            <br>
+
+
+            <strong>Restaurant Name: </strong>{{this.restaurant.restname}}
+            <strong>Plate Name: </strong>{{this.plate.plate_name}}
+            <strong>Quantity: </strong>{{this.quantity}}
+            <strong>Description: </strong>{{this.plate.description}}
+            <strong>Price per Plate: </strong>{{this.plate.price}}
+            <strong>Order Date: </strong>{{this.createdAt}}
+            {{#if this.paid}}
+            <strong>PAID</strong>
+            {{/if}}
+             {{#unless this.paid}}
+            <strong>UNPAID</strong>
+               <form action="/purchaseplates/{{this.id}}?_method=PUT" method="POST">
+            <input type="hidden" name="PlatePurchaseID" value={{this.id}}>
+            <button type="submit">Pay For Meal</button>
+          </form>
+               <form action="/cancelplate/{{this.id}}?_method=DELETE" method="POST">
+            <input type="hidden" name="PlatePurchaseID" value={{this.id}}>
+            <input type="hidden" name="sourceplateID" value={{this.plateId}}>
+            <input type="hidden" name="reservedquantity" value={{this.quantity}}>
+            <input type="hidden" name="precxlremainqty" value={{this.plate.quantity}}>
+            <button type="submit">Cancel Meal</button>
+          </form>
+            {{/unless}}
+         
+            {{!--
+            <form action="/purchaseplates/{{this.id}}?_method=PUT" method="POST">
+              <input type="hidden" name="PlatePurchaseID" value={{this.id}}>
+              <button type="submit">Pay For Order</button>
+            </form> --}}
+
+          </li>
+
+          {{/each}}
+        </ul>
+      </div>
     </div>
 
-      <div class="row">
-  
-      </div>
-      
-      <div class="row">
-        <div class="col-md-10">
-          <div id="purchasesummary">
-            <h2>Plates Purchased!</h2>
-            <ul style="list-style: none;">
-                <h5><strong>ORDER SUMMARY</strong></h5>
-           {{#each purchasesummary}}
 
-              <li class="row">
-                    <br>
-                  
-              
-                    <strong>Restaurant Name: </strong>{{this.restaurant.first_name}} {{this.guest.last_name}}
-                    <strong>Plate Name: </strong>{{this.plate.plate_name}}
-                    <strong>Quantity: </strong>{{this.quantity}}
-          
-                    <strong>Price per Plate: </strong>{{this.plate.price}}
-                     {{!-- <form action="/purchaseplates/{{this.id}}?_method=PUT" method="POST">
-                      <input type="hidden" name="PlatePurchaseID" value={{this.id}}>
-                      <button type="submit">Pay For Order</button>
-                    </form> --}}
-                  
-                  </li>
-            
-              {{/each}}
-            </ul>
-        </div>
-      </div>
+  </div>
 
-    
+  {{!-- <div class="col-md-6">
+    <div id="purchasetopay">
+      <h2>Pay for Your Purchases</h2>
+      <ul style="list-style: none;">
+        {{#each purchasesummary}} {{#unless paid}}
+        <li class="row">
+          <br>
+          <h5><strong>ORDER SUMMARY</strong></h5>
+          <strong>TEMP ID: </strong>{{this.id}}<br>
+          <strong>Restaurant Name: </strong>{{this.restaurant.first_name}} {{this.guest.last_name}}<br>
+          <strong>Plate Name: </strong>{{this.plate.plate_name}}<br>
+          <strong>Quantity: </strong>{{this.quantityordered}}<br>
+
+          <strong>Price per Plate: </strong>{{this.plate.price}}<br>
+          <form action="/purchaseplates/{{this.id}}?_method=PUT" method="POST">
+            <input type="hidden" name="PlatePurchaseID" value={{this.id}}>
+            <button type="submit">Pay For Order</button>
+          </form>
+
+        </li>
+        {{/unless}} {{/each}}
+      </ul>
+    </div>
+  </div> --}}
 </div>
-
-        {{!-- <div class="col-md-6">
-          <div id="purchasetopay">
-            <h2>Pay for Your Purchases</h2>
-              <ul style="list-style: none;">
-              {{#each purchasesummary}}
-
-              <li class="row">
-                    <br>
-                    <h5><strong>ORDER SUMMARY</strong></h5>
-                    <strong>TEMP ID: </strong>{{this.id}}<br>
-                    <strong>Restaurant Name: </strong>{{this.restaurant.first_name}} {{this.guest.last_name}}<br>
-                    <strong>Plate Name: </strong>{{this.plate.plate_name}}<br>
-                    <strong>Quantity: </strong>{{this.quantityordered}}<br>
-          
-                    <strong>Price per Plate: </strong>{{this.plate.price}}<br>
-                     <form action="/purchaseplates/{{this.id}}?_method=PUT" method="POST">
-                      <input type="hidden" name="PlatePurchaseID" value={{this.id}}>
-                      <button type="submit">Pay For Order</button>
-                    </form>
-                  
-                  </li>
-            
-              {{/each}}
-            </ul>
-        </div>
-    </div>
-    </div> --}}
+            <a class="btn btn-default" href="/purchaseoptions">Return to Meal Options</a>
