@@ -290,6 +290,12 @@ module.exports = function (app) {
         var hbsObject = {
           purchasesummary: data
         };
+        // res.JSON(data); To return to React  Router 
+
+        // res.JSON ({
+        //   id: req.params.id,
+        //   paid:true
+        // });
         res.render("purchasesummary", hbsObject);
       });
     }
@@ -310,6 +316,11 @@ module.exports = function (app) {
             id: req.params.id
           }
         }).then(function (data) {
+
+                  // res.JSON ({
+        //   id: req.params.id,
+        //   paid:true
+        // });
           res.redirect("/purchasesummary");
         });
 

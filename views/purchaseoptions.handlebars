@@ -28,7 +28,6 @@
                 <label for="quantityordered">How Many Meals Would You Like?</label>
                 <input type="text" id="quantityordered" name="quantityordered">
                 <input type="hidden" name="restID" value={{this.restaurantId}}>
-                <input type="hidden" name="priorquantity" value={{this.quantity}}>
                 <input type="hidden" name="PlatePurchaseID" value={{this.id}}>
 
                 <button type="submit">Purchase Meals</button>
@@ -45,7 +44,6 @@
         <div class='col-md-2'></div>
         <div class='col-md-10'>
           <a class="btn btn-default" href="/purchasesummary">Purchase Summary And Pay</a>
-          <a class="btn btn-default" href="/purchaseoptions">Return to Meal Options</a>
 
         </div>
       </div>
