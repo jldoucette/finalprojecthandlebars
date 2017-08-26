@@ -259,10 +259,7 @@ module.exports = function (app) {
               id: req.params.id
             }
           }).then(function (data) {
-            // var hbsObject = {
-            //   purchasesummary: data
-            // };
-            res.render("purchaseoptions");
+            res.redirect("/purchaseoptions");
           });
       }
       else {
@@ -278,7 +275,6 @@ module.exports = function (app) {
 
   app.get('/purchasesummary', function (req, res) {
     if (userLoggedIn && userRole == "U") {
-      console.log("%%%%%%%GOT HERE to purchases summary");
       db.purchases.findAll({
         order: [['restaurantId', 'ASC']],
         where: {
@@ -314,7 +310,7 @@ module.exports = function (app) {
             id: req.params.id
           }
         }).then(function (data) {
-          res.redirect("/purchaseoptions");
+          res.redirect("/purchasesummary");
         });
 
     }
