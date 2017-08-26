@@ -18,7 +18,7 @@
               {{#each purchaseoptions}}
 
                   <li class="row">
-                    {{this.plate_name}}&nbsp{{this.description}}&nbsp${{this.price}}<br>
+                    From :{{this.restaurant.restname}}&nbsp{{this.plate_name}}&nbsp{{this.description}}&nbsp${{this.price}}<br>
                     {{this.protein}}&nbsp{{this.side1}}&nbsp<strong>Quantity Available:</strong> {{this.quantity}}
                     <div id="platepurchase">
                     <form action="/purchaseoptions/{{this.id}}?_method=PUT" method="POST">
